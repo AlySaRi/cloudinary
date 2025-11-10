@@ -1,0 +1,29 @@
+<h1>Editar Lugar</h1>
+
+<form action="/places/{{place.id}}/edit" method="POST" enctype="multipart/form-data">
+  <fieldset>
+    <label for="title">Nombre del lugar:</label>
+    <input
+      type="text"
+      id="title"
+      name="title"
+      value="{{place.title}}"
+      required
+    >
+
+    <label>Imagen actual:</label>
+    <img src="{{place.imageUrl}}" alt="{{place.title}}" width="200">
+
+    <label for="image">Cambiar imagen (opcional):</label>
+    <input
+      type="file"
+      id="image"
+      name="image"
+      accept="image/*"
+    >
+    <small>Si no seleccionas una imagen, se mantendrá la actual</small>
+  </fieldset>
+
+  <button type="submit">Actualizar</button>
+  <a href="/">Cancelar</a>
+</form>

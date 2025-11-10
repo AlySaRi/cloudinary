@@ -1,0 +1,44 @@
+<h1>Mis Lugares</h1>
+
+<!-- IMPORTANTE: añadir enctype="multipart/form-data" -->
+<form action="/places" method="POST" enctype="multipart/form-data">
+  <fieldset>  
+    <label for="title">Nombre del lugar:</label>
+    <input
+      type="text"
+      id="title"
+      name="title"
+      required
+      placeholder="Ej: Torre Eiffel"
+    >
+    <label for="image">Imagen:</label>
+    <input
+      type="file"
+      id="image"
+      name="image"
+      accept="image/*"
+      required
+    >
+    <small>Máximo 5MB</small>
+  </fieldset>
+  <button type="submit">Subir Lugar</button>
+</form>
+
+<hr>
+
+<h2>Lugares guardados</h2>
+
+{{#if places.length}}
+  {{#each places}}
+    <div>
+      <h3>{{this.title}}</h3>
+      <a href="/places/{{this.id}}/edit">Editar</a> <!-- Link para editar -->
+      <img src="{{this.imageUrl}}" alt="{{this.title}}" width="300">
+      <form action="/places/{{this.id}}/delete" method="POST" style="display: inline;">
+        <button type="submit" onclick="return confirm('¿Eliminar este lugar?')">Eliminar</button> <!-- Botón para eliminar -->
+      </form>
+    </div>
+  {{/each}}
+{{else}}
+  <p>No hay lugares aún.</p>
+{{/if}}
